@@ -43,13 +43,13 @@ Clicking a third time will restore the relative timestamp.
 
 You can specify which timezone mode you'd like to start with by setting the `data-mode` attribute. The options are:
 
-`data-mode='timeago'` - (default) Relative time.
-`data-mode='local'` - Display local time (based on browser settings).
-`data-mode='utc'` - Display as UTC time.
+- `data-mode='timeago'` - (default) Relative time.
+- `data-mode='local'` - Display local time (based on browser settings).
+- `data-mode='utc'` - Display as UTC time.
 
 You can also change the relative time style.
 
-`data-timeago='short'` - `2d`
-`data-timeago='normal'` - `2 days` (default)
-`data-timeago='long'` - `2 days ago`
+- `data-timeago='short'` - `2d`
+- `data-timeago='normal'` - `2 days` (default)
+- `data-timeago='long'` - `2 days ago`
 
