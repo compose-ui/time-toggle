@@ -31,7 +31,7 @@ describe('DateToHTML', function(){
 
   it('toggles times to local templates', function(){
     var el = TimeToggle.init(newTimeEl())
-    TimeToggle.toggle(el)
+    TimeToggle.toggleEl(el)
 
     var zone = el.querySelector('.timezone')
     assert.equal(zone.innerHTML, localZone)
@@ -39,8 +39,8 @@ describe('DateToHTML', function(){
 
   it('toggles times to utc templates', function(){
     var el = TimeToggle.init(newTimeEl())
-    TimeToggle.toggle(el)
-    TimeToggle.toggle(el)
+    TimeToggle.toggleEl(el)
+    TimeToggle.toggleEl(el)
     var zone = el.querySelector('.timezone')
     assert.equal(zone.innerHTML, 'UTC')
   })
