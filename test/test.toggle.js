@@ -7,6 +7,7 @@ var Event = require('compose-event')
 var newTimeEl = function(){ return domify('<time class="time-toggle" datetime="2016-04-21T18:51:53+00:00"></time>') }
 var modeTimeEl = function(){ return domify('<time class="time-toggle" datetime="2016-04-21T18:51:53+00:00" data-mode="local"></time>') }
 var timeagoEl = function(){ return domify('<time class="time-toggle" data-timeago="short" datetime="2016-04-21T18:51:53+00:00"></time>') }
+var textTimeEl = function(){ return domify('<time class="time-toggle" datetime="2016-04-21T18:51:53+00:00"><span class="date-text"></span><span id="icon-test">some icon</span></time>') }
 var localZone = DateToHTML.timezone(new Date())
 
 describe('DateToHTML', function(){
@@ -53,20 +54,37 @@ describe('DateToHTML', function(){
 
   it('converts time-toggles on launch', function(){
     document.body.appendChild(newTimeEl())
-    Event.fire(document, 'DOMContentLoaded')
-    assert.isDefined(document.querySelector('.timeago'))
+    Event.change.fire()
+    assert.isNotNull(document.querySelector('.timeago'))
     document.body.removeChild(document.querySelector('time'))
   })
 
   it('toggles through time modes', function(){
+    Array.prototype.forEach.call( document.querySelectorAll('time'), function(el) {
+      el.parentElement.removeChild(el)
+    })
+
     document.body.appendChild(newTimeEl())
-    Event.fire(document, 'DOMContentLoaded')
-    assert.isDefined(document.querySelector('.timeago'))
+    Event.change.fire()
 
-    Event.fire(document.querySelector('time'), 'click')
-    assert.isDefined(document.querySelector('.local'))
+    assert.equal(document.querySelector('time').dataset.mode, 'timeago')
 
-    Event.fire(document.querySelector('time'), 'click')
-    assert.isDefined(document.querySelector('.utc'))
+    TimeToggle.toggle()
+    assert.equal(document.querySelector('time').dataset.mode, 'local')
+
+    TimeToggle.toggle()
+    assert.equal(document.querySelector('time').dataset.mode, 'utc')
+
+    document.body.removeChild(document.querySelector('time'))
+  })
+
+  it('preserves contents of time element whith date-text', function(){
+
+    document.body.appendChild(textTimeEl())
+    Event.change.fire()
+
+    TimeToggle.toggle()
+
+    assert.isNotNull(document.querySelector('#icon-test'))
   })
 })
