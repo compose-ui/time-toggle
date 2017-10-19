@@ -1,6 +1,6 @@
 {
   "name": "compose-time-toggle",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Click to toggle all time elements between relative, local, and UTC timestamps.",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/compose-ui/time-toggle#readme",
   "dependencies": {
-    "compose-event": "^1.0.0"
+    "compose-event": "^1.8.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
